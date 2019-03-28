@@ -1,45 +1,56 @@
 {
   "name": "react-vega",
-  "version": "4.0.2",
+  "version": "5.0.0-graphext-beta",
   "description": "Convert Vega spec into React class conveniently",
   "author": "Krist Wongsuphasawat <krist.wongz@gmail.com> (http://kristw.yellowpigz.com)",
-  "keywords": [],
-  "repository": "git@github.com:kristw/react-vega.git",
+  "keywords": [
+    "react",
+    "vega"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graphext/greact-vega.git"
+  },
   "bugs": {
-    "url": "https://github.com/kristw/react-vega/issues"
+    "url": "https://graphext.atlassian.net/browse/GRAPH"
   },
-  "dependencies": {
-    "prop-types": "^15.6.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react": ">=15.5.4 || ^16.0.0",
-    "vega-lib": "^4.2.0"
+    "react": "^16.8.5",
+    "vega": "^5.3.2"
   },
   "devDependencies": {
-    "gh-pages": "^0.12.0",
-    "lazynerd-devtools": "^0.0.2",
-    "np": "^2.20.1",
-    "pkgfiles": "^2.3.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "vega-lib": "^4.2.0"
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "clean-webpack-plugin": "^2.0.1",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "tslint": "^5.14.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.3.4000",
+    "vega": "^5.3.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "license": "Apache-2.0",
-  "main": "dist/react-vega.min.js",
+  "main": "dist/react-vega.bundle.js",
   "files": [
-    "src/index.js",
+    "src/index.ts",
     "dist/*.*"
   ],
   "scripts": {
-    "np": "np",
-    "version": "npm run build && git add -A dist",
-    "prepublish": "pkgfiles",
-    "postpublish": "git push; git push --tags",
-    "dev": "./node_modules/lazynerd-devtools/dev --config webpack.config.demo.js",
-    "build-demo": "rm -rf demo/dist && NODE_ENV=production ./node_modules/lazynerd-devtools/build --config webpack.config.demo.js",
-    "build": "rm -rf dist && NODE_ENV=production ./node_modules/lazynerd-devtools/build --config webpack.config.lib.js",
-    "lint": "./node_modules/lazynerd-devtools/lint \"src/**/*.@(js|jsx)\"",
-    "lint-fix": "./node_modules/lazynerd-devtools/lint --fix \"src/**/*.@(js|jsx)\"",
-    "gh-pages": "npm run build-demo && gh-pages -d demo/dist"
+    "version": "npm run build",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "tscheck": "tsc --noEmit",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

@@ -1,0 +1,52 @@
+{
+	"extends": ["tslint:latest", "tslint-react"],
+	"rules": {
+		"jsx-wrap-multiline": false,
+		"jsx-key": false,
+		"jsx-no-lambda": false,
+		"jsx-no-multiline-js": false,
+		"jsx-boolean-value": false,
+		"jsx-curly-spacing": "never",
+		"ordered-imports": true,
+		"quotemark": [true, "single", "jsx-double"],
+		"member-access": false,
+		// Use a custom order of: "member-ordering": true,
+		"indent": [true, "tabs", 2],
+		"object-literal-sort-keys": false,
+		"trailing-comma": true,
+		"interface-name": false,
+		"no-shadowed-variable": [
+			true,
+			{
+				"class": true,
+				"enum": true,
+				"function": true,
+				"interface": true,
+				"namespace": true,
+				"typeAlias": true,
+				"typeParameter": true,
+				"temporalDeadZone": false
+			}
+		],
+		"arrow-parens": [true, "ban-single-arg-parens"],
+		"variable-name": [true, "ban-keywords", "allow-leading-underscore", "allow-snake-case"],
+		"semicolon": [true, "always", "ignore-bound-class-methods"],
+		"triple-equals": [true, "allow-null-check"],
+		"no-string-literal": false,
+		"no-consecutive-blank-lines": [true, 2],
+		"array-type": [true, "generic"],
+		"only-arrow-functions": [true, "allow-named-functions"],
+		"no-bitwise": false,
+		"prefer-const": true,
+		"no-unused-expression": [true, "allow-fast-null-checks"],
+		"no-submodule-imports": false,
+		"no-implicit-dependencies": [true, "dev"],
+		"no-console": {
+			"options": ["log", "time", "timeEnd", "trace"]
+		},
+		"one-line": false
+	},
+	"linterOptions": {
+		"exclude": ["**/*.js", "**/*.jsx", "node_modules/**/*.*"]
+	}
+}

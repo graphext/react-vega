@@ -35,5 +35,6 @@ tmp
 *.sublime-workspace
 
 # Project specific
-examples/dist
+demo/dist
 .vscode
+dist

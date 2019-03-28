@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"declaration": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": [
+			"es6",
+			"dom",
+			"esnext",
+			"esnext.asynciterable"
+		],
+		"module": "es6",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"jsx": "react",
+		"target": "es5",
+		"allowJs": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitAny": false,
+		"strictNullChecks": true,
+		"allowSyntheticDefaultImports": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"types": ["react", "react-dom"],
+		"resolveJsonModule": true
+	},
+	"include": [
+		"src", "demo"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	],
+	"compileOnSave": false
+}
