@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"declaration": false,
+		"declaration": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"lib": [
@@ -14,7 +14,6 @@
 		"sourceMap": true,
 		"jsx": "react",
 		"target": "es5",
-		"allowJs": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"noImplicitAny": false,
@@ -23,14 +22,17 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"types": ["react", "react-dom"],
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"outDir": "dist",
+		"typeRoots": ["node_modules/@types"]
 	},
 	"include": [
-		"src", "demo"
+		"src"
 	],
 	"exclude": [
 		"node_modules",
-		"dist"
+		"dist",
+		"demo"
 	],
 	"compileOnSave": false
 }

@@ -1,8 +1,11 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 module.exports = {
     mode: 'production',
     entry: "./src/index.ts",
+    devtool: 'source-map',
     output: {
-        filename: "react-vega.bundle.js",
+        filename: "index.bundle.js",
         path: __dirname + "/dist",
         sourceMapFilename: '[file].map',
         library: 'ReactVega',
@@ -21,7 +24,10 @@ module.exports = {
     module: {
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            {
+                test: /\.tsx?$/, loader: "ts-loader", options: {
+                    configFile: 'tsconfig.prod.json'
+                } },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
