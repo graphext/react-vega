@@ -23,17 +23,15 @@
 		"noUnusedParameters": true,
 		"types": ["react", "react-dom"],
 		"resolveJsonModule": true,
-		"rootDir": "src",
 		"outDir": "dist",
 		"typeRoots": ["node_modules/@types"]
 	},
 	"include": [
-		"src"
+		"src", "demo"
 	],
 	"exclude": [
 		"node_modules",
-		"dist",
-		"demo"
+		"dist"
 	],
 	"compileOnSave": false
 }

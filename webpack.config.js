@@ -32,7 +32,10 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                options: {
+                    configFile: 'tsconfig.prod.json'
+                }
             },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
