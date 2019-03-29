@@ -12,7 +12,7 @@ module.exports = {
         libraryTarget: 'umd',
         umdNamedDefine: false
     },
-    plugins:[
+    plugins: [
         new CleanWebpackPlugin()
     ],
 
@@ -25,12 +25,19 @@ module.exports = {
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             {
-                test: /\.tsx?$/, loader: "ts-loader", options: {
+                test: /\.tsx?$/,
+                loader: "ts-loader",
+                options: {
                     configFile: 'tsconfig.prod.json'
-                } },
+                }
+            },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }
         ]
     },
 
@@ -39,8 +46,8 @@ module.exports = {
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
+        "react": "react",
+        "react-dom": "reactDOM",
         "vega": "vega"
     }
 };
