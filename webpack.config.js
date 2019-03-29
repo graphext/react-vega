@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -5,20 +6,24 @@ module.exports = {
     entry: "./src/index.ts",
     devtool: 'source-map',
     output: {
-        filename: "index.bundle.js",
-        path: __dirname + "/dist",
+        filename: "index.js",
+        path: __dirname + "/dist/",
         sourceMapFilename: '[file].map',
         library: 'ReactVega',
-        libraryTarget: 'umd',
-        umdNamedDefine: false
+        libraryTarget: 'commonjs2'
     },
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify('production')
+            }
+        })
     ],
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [".ts", ".tsx", ".js", "jsx"]
     },
 
     module: {
@@ -27,16 +32,15 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
-                options: {
-                    configFile: 'tsconfig.prod.json'
-                }
+                exclude: /node_modules/
             },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
                 enforce: "pre",
                 test: /\.js$/,
-                loader: "source-map-loader"
+                loader: "source-map-loader",
+                exclude: /node_modules/
             }
         ]
     },

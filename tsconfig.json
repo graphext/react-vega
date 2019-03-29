@@ -23,6 +23,7 @@
 		"noUnusedParameters": true,
 		"types": ["react", "react-dom"],
 		"resolveJsonModule": true,
+		"rootDir": "src",
 		"outDir": "dist",
 		"typeRoots": ["node_modules/@types"]
 	},

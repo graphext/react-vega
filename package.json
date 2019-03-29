@@ -1,6 +1,6 @@
 {
   "name": "react-vega",
-  "version": "5.0.0-graphext-beta.4",
+  "version": "5.0.0-graphext-beta.6",
   "description": "Convert Vega spec into React class conveniently",
   "author": "Krist Wongsuphasawat <krist.wongz@gmail.com> (http://kristw.yellowpigz.com)",
   "keywords": [
@@ -41,10 +41,9 @@
     "webpack-dev-server": "^3.2.1"
   },
   "license": "Apache-2.0",
-  "main": "dist/index.bundle.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "src/index.ts",
     "dist/*.*"
   ],
   "scripts": {
