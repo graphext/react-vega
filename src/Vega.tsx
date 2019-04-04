@@ -122,7 +122,7 @@ class Vega extends React.Component<VegaProps> {
 				if (props.enableHover) {
 					this.view.hover();
 				}
-				this.view.run();
+				this.view.runAsync();
 			}
 		}
 	}
@@ -175,7 +175,7 @@ class Vega extends React.Component<VegaProps> {
 				if (props.enableHover) {
 					view.hover();
 				}
-				view.run();
+				view.runAsync();
 
 				props.onNewView!(view);
 			} catch (ex) {
