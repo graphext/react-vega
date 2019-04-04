@@ -24,6 +24,7 @@
 		"types": ["react", "react-dom"],
 		"resolveJsonModule": true,
 		"outDir": "dist",
+		"keyofStringsOnly": true,
 		"typeRoots": ["node_modules/@types"]
 	},
 	"include": [
