@@ -4,9 +4,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import ReactVegaDemo from './ReactVegaDemo';
 import ReactVegaLiteDemo from './ReactVegaLiteDemo';
+import QuantitativeFilter from './QuantitativeFilterDemo';
 import './style.css';
 
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('react-vega', module).add('Demo', () => <ReactVegaDemo />);
 storiesOf('react-vega-lite', module).add('Demo', () => <ReactVegaLiteDemo />);
+storiesOf('graphext', module).add('QuantitativeFilter', () => <QuantitativeFilter />);

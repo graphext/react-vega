@@ -1,3 +1,4 @@
+/* with logs */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/forbid-prop-types */
 import * as vega from 'vega';
@@ -41,6 +42,11 @@ const defaultProps = {
 
 class Vega extends React.Component {
   static isSamePadding(a, b) {
+    console.log(`isSamePadding(`);
+    console.log(a);
+    console.log(`, `);
+    console.log(b);
+    console.log(`)`);
     if (isDefined(a) && isDefined(b)) {
       return a.top === b.top && a.left === b.left && a.right === b.right && a.bottom === b.bottom;
     }
@@ -49,23 +55,45 @@ class Vega extends React.Component {
   }
 
   static isSameData(a, b) {
+    console.log(`isSameData(`);
+    console.log(a);
+    console.log(`), `);
+    console.log(b);
+    console.log(`)`);
+    const se = shallowEqual(a, b);
+    console.log(`shallowEqual(a, b):${se} && !isFunction(a):${!isFunction(a)}`);
+    console.log(`return a === b ${a === b} && !isFunction(a) ${!isFunction(a)}`);
     return a === b && !isFunction(a);
   }
 
   static isSameSpec(a, b) {
+    console.log(`isSameSpec(`);
+    console.log(a);
+    console.log(`, `);
+    console.log(b);
+    console.log(`)`);
     return a === b || JSON.stringify(a) === JSON.stringify(b);
   }
 
   static listenerName(signalName) {
+    console.log(`listenerName(`);
+    console.log(signalName);
+    console.log(`) -> onSignal(`);
+    console.log(capitalize(signalName));
+    console.log(`)`);
     return `onSignal${capitalize(signalName)}`;
   }
 
   componentDidMount() {
+    console.log(`componentDidMount()`);
     const { spec } = this.props;
     this.createView(spec);
   }
 
   componentDidUpdate(prevProps) {
+    console.log(`componentDidUpdate(`);
+    console.log(prevProps);
+    console.log(`)`);
     const { spec } = this.props;
     if (spec !== prevProps.spec) {
       this.clearView();
@@ -93,6 +121,7 @@ class Vega extends React.Component {
           const oldData = prevProps.data[d.name];
           const newData = props.data[d.name];
           if (!Vega.isSameData(oldData, newData)) {
+            console.log(`Old data for ${d.name} is not the same than new one -> changed!`);
             this.updateData(d.name, newData);
             changed = true;
           }
@@ -100,21 +129,28 @@ class Vega extends React.Component {
       }
 
       if (!prevProps.enableHover && props.enableHover) {
+        console.log(`Prev props have not enabled hover and now it's enabled -> changed! `);
         this.view.hover();
         changed = true;
       }
 
       if (changed) {
+        console.log(`Changed! -> view.run()`);
         this.view.run();
       }
     }
   }
 
   componentWillUnmount() {
+    console.log(`componentWillUnmount()`);
     this.clearView();
   }
 
   createView(spec) {
+    console.log(`createView(`);
+    console.log(spec);
+    console.log(`)`);
+
     if (spec) {
       const { props } = this;
       // Parse the vega spec and create the view
@@ -157,6 +193,7 @@ class Vega extends React.Component {
 
         props.onNewView(view);
       } catch (ex) {
+        console.error(ex);
         this.clearView();
         props.onParseError(ex);
       }
@@ -168,10 +205,19 @@ class Vega extends React.Component {
   }
 
   updateData(name, value) {
+    console.log(`updateData(`);
+    console.log(name);
+    console.log(`, `);
+    console.log(value);
+    console.log(`)`);
     if (value) {
       if (isFunction(value)) {
         value(this.view.data(name));
       } else {
+        console.log(`view.change(${name}`);
+        console.log(value);
+        console.log(`)`);
+
         this.view.change(
           name,
           vega
@@ -184,6 +230,7 @@ class Vega extends React.Component {
   }
 
   clearView() {
+    console.log(`clearView()`);
     if (this.view) {
       this.view.finalize();
       this.view = null;
@@ -193,6 +240,8 @@ class Vega extends React.Component {
   }
 
   render() {
+    console.log(`render()`);
+
     const { className, style } = this.props;
 
     return (
@@ -212,3 +261,36 @@ Vega.propTypes = propTypes;
 Vega.defaultProps = defaultProps;
 
 export default Vega;
+
+function shallowEqual(a = {}, b = {}) {
+  if (a === b) {
+    return true;
+  }
+
+  if (
+    a == null ||
+    b == null ||
+    (!(typeof a === 'object' && a !== null) && !(typeof b === 'object' && b !== null))
+  ) {
+    return a !== a && b !== b;
+  }
+
+  if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) {
+    return a === b;
+  }
+
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+  const rse =
+    a === b ||
+    (aKeys.length === bKeys.length &&
+      aKeys.every(key => {
+        const se = shallowEqual(a[key], b[key]);
+        console.log(
+          `key: ${key} a[key]: ${a[key]} b[key]: ${b[key]} -> shallowEqual(a[key], b[key]) ${se}`,
+        );
+        return se;
+      }));
+  console.log(`a: ${a} b: ${b} -> shallowEqual(a, b) ${rse}`);
+  return rse;
+}
