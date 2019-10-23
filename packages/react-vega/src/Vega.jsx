@@ -105,7 +105,7 @@ class Vega extends React.Component {
       }
 
       if (changed) {
-        this.view.run();
+        this.view.runAsync();
       }
     }
   }
@@ -153,7 +153,7 @@ class Vega extends React.Component {
         if (props.enableHover) {
           view.hover();
         }
-        view.run();
+        view.runAsync();
 
         props.onNewView(view);
       } catch (ex) {
